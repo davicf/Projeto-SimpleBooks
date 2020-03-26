@@ -9,8 +9,8 @@ const getLivros = async (req, res, next) => {
 
 const createLivro = (req, res) => {
     try {
-        const { titulo, ano, paginas, resumo, capa, nota } = req.body;
-        const livro = new Livro(titulo, ano, paginas, resumo, capa, nota);    
+        const { titulo, ano, paginas, resumo, capa, nota, autor_id } = req.body;
+        const livro = new Livro(titulo, ano, paginas, resumo, capa, nota, autor_id);    
         const saveLivroResponse = repository.saveLivro(livro);
 
         res
@@ -33,6 +33,13 @@ const getLivroById = async (req, res) => {
     res.send(response);
 }
 
+const getLivrosByAutorId = async (req, res) => {
+    const { id } = req.params;
+    const response = await repository.find({ autor_id: id });
+
+    res.send(response);
+}
+
 const deleteLivroById = (req, res) => {
     const { id } = req.params;
     repository.deleteById(id);
@@ -49,6 +56,7 @@ module.exports = {
     getLivros,
     createLivro,
     getLivroById,
+    getLivrosByAutorId,
     deleteLivroById,
     updateLivroById
 }
