@@ -1,37 +1,37 @@
-const LivroSchema = require('../schemas/livro');
+const BookSchema = require('../schemas/livro');
 
-const saveLivro = livro => {
+const saveBook = book => {
     try {
-        const livroSchema = new LivroSchema(livro);
-        return livroSchema.save();
+        const bookSchema = new BookSchema(book);
+        return bookSchema.save();
     }catch(e){
         throw e;
     }
 }
 
 const find = async filters => {
-    const livrosFindReponse = await LivroSchema.find(filters);
-    return livrosFindReponse;
+    const booksFindReponse = await BookSchema.find(filters);
+    return booksFindReponse;
 }
 
 const findById = async id => {
-    const livro = await LivroSchema.findById(id);
+    const book = await BookSchema.findById(id);
 
-    return livro;
+    return book;
 }
 
 const deleteById = async id => {
-   await LivroSchema.findByIdAndRemove(id);
+   await BookSchema.findByIdAndRemove(id);
     
 }
 
 const updateById = async (_id, body) => {
-    const livro = await LivroSchema.findOneAndUpdate({ _id }, body);
-    return livro;
+    const book = await BookSchema.findOneAndUpdate({ _id }, body);
+    return book;
 }
 
 module.exports = {
-    saveLivro,
+    saveBook,
     find,
     findById,
     deleteById,

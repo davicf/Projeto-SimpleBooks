@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const LivroSchema = new Schema({
+const BookSchema = new Schema({
     titulo: String,
     ano: Number,
     paginas: Number,
@@ -15,4 +15,4 @@ const LivroSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('Livro', LivroSchema);
+module.exports = mongoose.model('Livro', BookSchema);

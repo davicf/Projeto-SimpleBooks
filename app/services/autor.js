@@ -1,4 +1,4 @@
-const Autor = require('../models/autor');
+const Author = require('../models/autor');
 const repository = require('../repository/autor');
 
 const getAuthors = async (req, res, next) => {
@@ -10,8 +10,8 @@ const getAuthors = async (req, res, next) => {
 const createAuthor = (req, res) => {
     try {
         const { nome, dataDeNascimento, biografia } = req.body;
-        const autor = new Autor(nome, dataDeNascimento, biografia);    
-        const saveAuthorResponse = repository.saveAuthor(autor);
+        const author = new Author(nome, dataDeNascimento, biografia);    
+        const saveAuthorResponse = repository.saveAuthor(author);
 
         res
         .status(201)
@@ -36,13 +36,17 @@ const getAuthorById = async (req, res) => {
 const deleteAuthorById = (req, res) => {
     const { id } = req.params;
     repository.deleteById(id);
-    res.status(204).send();
+    res
+    .status(204)
+    .send();
 }
 
 const updateAuthorById = async (req, res) => {
     const { params: { id }, body } = req;
     const response = await repository.updateById(id, body);
-    res.status(200).send(response);
+    res
+    .status(200)
+    .send(response);
 }
 
 module.exports = {

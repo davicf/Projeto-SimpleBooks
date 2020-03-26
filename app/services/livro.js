@@ -1,21 +1,21 @@
-const Livro = require('../models/livro');
+const Book = require('../models/livro');
 const repository = require('../repository/livro');
 
-const getLivros = async (req, res, next) => {
+const getBooks = async (req, res, next) => {
     const { query } = req;
     const response = await repository.find(query);
     res.send(response);
 }
 
-const createLivro = (req, res) => {
+const createBook = (req, res) => {
     try {
         const { titulo, ano, paginas, resumo, capa, nota, autor_id } = req.body;
-        const livro = new Livro(titulo, ano, paginas, resumo, capa, nota, autor_id);    
-        const saveLivroResponse = repository.saveLivro(livro);
+        const book = new Book(titulo, ano, paginas, resumo, capa, nota, autor_id);    
+        const saveBookResponse = repository.saveBook(book);
 
         res
         .status(201)
-        .send(saveLivroResponse);
+        .send(saveBookResponse);
     
     }catch(e) {
         res
@@ -25,7 +25,7 @@ const createLivro = (req, res) => {
 
 }
 
-const getLivroById = async (req, res) => {
+const getBookById = async (req, res) => {
 
     const { id } = req.params;
     const response = await repository.findById(id);
@@ -33,30 +33,34 @@ const getLivroById = async (req, res) => {
     res.send(response);
 }
 
-const getLivrosByAutorId = async (req, res) => {
+const getBooksByAuthorId = async (req, res) => {
     const { id } = req.params;
     const response = await repository.find({ autor_id: id });
 
     res.send(response);
 }
 
-const deleteLivroById = (req, res) => {
+const deleteBookById = (req, res) => {
     const { id } = req.params;
     repository.deleteById(id);
-    res.status(204).send();
+    res
+    .status(204)
+    .send();
 }
 
-const updateLivroById = async (req, res) => {
+const updateBookById = async (req, res) => {
     const { params: { id }, body } = req;
     const response = await repository.updateById(id, body);
-    res.status(200).send(response);
+    res
+    .status(200)
+    .send(response);
 }
 
 module.exports = {
-    getLivros,
-    createLivro,
-    getLivroById,
-    getLivrosByAutorId,
-    deleteLivroById,
-    updateLivroById
+    getBooks,
+    createBook,
+    getBookById,
+    getBooksByAuthorId,
+    deleteBookById,
+    updateBookById
 }

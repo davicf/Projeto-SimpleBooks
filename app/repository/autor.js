@@ -1,32 +1,32 @@
-const AutorSchema = require('../schemas/autor');
+const AuthorSchema = require('../schemas/autor');
 
-const saveAuthor = autor => {
+const saveAuthor = author => {
     try {
-        const autorSchema = new AutorSchema(autor);
-        return autorSchema.save();
+        const authorSchema = new AuthorSchema(author);
+        return authorSchema.save();
     }catch(e){
         throw e;
     }
 }
 
 const find = async filters => {
-    const authorsFindReponse = await AutorSchema.find(filters);
+    const authorsFindReponse = await AuthorSchema.find(filters);
     return authorsFindReponse;
 }
 
 const findById = async id => {
-    const author = await AutorSchema.findById(id);
+    const author = await AuthorSchema.findById(id);
 
     return author;
 }
 
 const deleteById = async id => {
-   await AutorSchema.findByIdAndRemove(id);
+   await AuthorSchema.findByIdAndRemove(id);
     
 }
 
 const updateById = async (_id, body) => {
-    const author = await AutorSchema.findOneAndUpdate({ _id }, body);
+    const author = await AuthorSchema.findOneAndUpdate({ _id }, body);
     return author;
 }
 
