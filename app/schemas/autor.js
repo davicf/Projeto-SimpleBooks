@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const AuthorSchema = new Schema({
     nome: String,
-    dataDeNascimeno: Date,
+    dataDeNascimento: Date,
     biografia: String
 });
 
