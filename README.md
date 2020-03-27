@@ -1,6 +1,10 @@
 # Projeto-SimpleBooks
 
-Requisitos - nodejs
+Requisitos:
+
+nodejs - https://nodejs.org/en/
+
+mongodb - https://www.mongodb.com/dr/fastdl.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.2.5-signed.msi/download
 
 
 Para a execução da API: 
